@@ -1,0 +1,23 @@
+@import '../../colors/Colors.scss';
+
+.ai-btn {
+    background: $blue;
+    padding: 16px 24px;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 7px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background: rgba($blue, 0.3);
+    }
+}
+
+.ai-buttonGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

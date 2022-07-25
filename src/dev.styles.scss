@@ -1,0 +1,22 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    &__button {
+        position: relative;
+        left: -250px;
+        font-size: 25px;
+        border: 0;
+        background: #3d91db;
+        padding: 20px 40px;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+}
