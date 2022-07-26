@@ -1,13 +1,12 @@
 {
-  "name": "animeit",
+  "name": "services",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alikinvv.github.io/animeit",
+  "homepage": "https://alikinvv.github.io/services",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "animate.css": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -41,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.7",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^4.0.0"

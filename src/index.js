@@ -1,12 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { App } from './components'
+import App from './components/App'
+import './style.scss'
 
-import './dev.styles.scss'
-
-document.body.innerHTML += '<div id="animeitRoot" class="animeit ai-app"></div>'
-
-const root = ReactDOM.createRoot(document.getElementById('animeitRoot'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <App />
