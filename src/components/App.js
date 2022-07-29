@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 
-import AddRequest from './AddRequest'
+import AddRoute from './AddRoute'
 import Form from './Form'
 
 const App = () => {
-    const [route, setRoute] = useState('/v1/civil-defence/dictionary/org-units')
+    const [route, setRoute] = useState() // '/v1/civil-defence/dictionary/org-units'
 
     return (
         <>
-            {!route && <AddRequest route={(route) => setRoute(route)} />}
-            {route && <Form route={route} />}
+            {<AddRoute className={route && 'animate'} route={route} setRoute={(route) => setRoute(route)} />}
+            {<Form className={route && 'show'} route={route} />}
         </>
     )
 }
