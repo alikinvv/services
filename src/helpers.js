@@ -21,7 +21,7 @@ export const makeServiceName = (arr) => {
     return (string += 'Service')
 }
 
-export const makeProps = (arr, request) => {
+export const makeProps = (arr, request, params = false) => {
     if (arr) {
         let newArr = arr.map((el) => {
             switch (el) {
@@ -46,7 +46,7 @@ export const makeProps = (arr, request) => {
         })
 
         string += firstLetterBig(request.name)
-        return (string += 'Props')
+        return (string += params ? 'ParamsProps' : 'Props')
     } else {
         return ''
     }

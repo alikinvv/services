@@ -4,7 +4,7 @@ import AddRoute from './AddRoute'
 import Form from './Form'
 
 const App = () => {
-    const [route, setRoute] = useState() // '/v1/civil-defence/dictionary/org-units'
+    const [route, setRoute] = useState('/v1/civil-defence/dictionary/org-units') // '/v1/civil-defence/dictionary/org-units'
 
     return (
         <>
