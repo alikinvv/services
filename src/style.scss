@@ -239,6 +239,15 @@ code {
         justify-content: center;
         padding: 4px 8px;
     }
+
+    &__remove {
+        background: #ccc;
+        color: #333;
+
+        &:hover {
+            background: #aaa;
+        }
+    }
 }
 
 .tabs {

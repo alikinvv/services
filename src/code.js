@@ -14,6 +14,9 @@ export default new $serviceName()
 } from './$fileName'
 export * from './$fileName.types'
 `,
+    serviceTypes: `
+export interface $type {}
+    `,
     get: `get = () => {
         return api.$method<$responseProps>(
             '$route',

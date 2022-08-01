@@ -17,6 +17,7 @@ function usePrevious(value) {
 const Form = ({ route, className }) => {
     const [serviceMainFile, setServiceMainFile] = useState(code.service)
     const [serviceIndexFile, setServiceIndexFile] = useState(code.serviceIndex)
+    const [serviceTypesFile, setServiceTypesFile] = useState(code.serviceTypes)
     const [serviceName, setServiceName] = useState()
     const [filesName, setFilesName] = useState()
     const [propsList, setPropsList] = useState([])
@@ -58,17 +59,24 @@ const Form = ({ route, className }) => {
 
                 let propsListStr = propsList
                 propsListStr.push(makeProps(routeArr, request))
-                request.name === 'getListByParam' ||
-                    request.name === 'getByParam' ||
-                    (request.name === 'create' && propsListStr.push(makeProps(routeArr, request, true)))
+                if (request.name === 'getListByParam' || request.name === 'getByParam' || request.name === 'create') {
+                    propsListStr.push(makeProps(routeArr, request, true))
+                }
                 setPropsList(propsListStr)
+                console.log(propsListStr)
 
-                let propsString = ''
+                let mainProps = ''
+                let typesProps = ''
+                console.log(propsList)
                 propsList.forEach((prop) => {
-                    propsString += !!propsString.length ? ', ' : ''
-                    propsString += prop
+                    mainProps += !!mainProps.length ? ', ' : ''
+                    mainProps += prop
+                    typesProps += code.serviceTypes
+                    typesProps = typesProps.replaceAll('$type', prop)
                 })
-                setProps(propsString)
+
+                setProps(mainProps)
+                setServiceTypesFile(typesProps)
             })
 
             setRequest(requestString)
@@ -77,21 +85,26 @@ const Form = ({ route, className }) => {
 
     useEffect(() => {
         if ((request, props)) {
-            let str = serviceMainFile
-            str = str.replaceAll('$request', request)
-            str = str.replaceAll('$responseProps', props)
+            let serviceMain = serviceMainFile
+            serviceMain = serviceMain.replaceAll('$request', request)
+            serviceMain = serviceMain.replaceAll('$responseProps', props)
 
-            setServiceMainFile(str)
+            setServiceMainFile(serviceMain)
             setUpdate(false)
         }
     }, [request, props])
 
     useEffect(() => {
         if (serviceName && update) {
-            let str = code.service
-            str = str.replaceAll('$serviceName', serviceName)
-            str = str.replaceAll('$fileName', filesName)
-            setServiceMainFile(str)
+            let serviceMain = code.service
+            serviceMain = serviceMain.replaceAll('$serviceName', serviceName)
+            serviceMain = serviceMain.replaceAll('$fileName', filesName)
+            setServiceMainFile(serviceMain)
+
+            let serviceIndex = code.serviceIndex
+            serviceIndex = serviceIndex.replaceAll('$serviceName', serviceName)
+            serviceIndex = serviceIndex.replaceAll('$fileName', filesName)
+            setServiceIndexFile(serviceIndex)
         }
     }, [serviceName, update])
 
@@ -134,6 +147,11 @@ const Form = ({ route, className }) => {
                 {file === 'main' && (
                     <SyntaxHighlighter language="typesciprt" style={vs2015}>
                         {file === 'main' && serviceMainFile}
+                    </SyntaxHighlighter>
+                )}
+                {file === 'types' && (
+                    <SyntaxHighlighter language="typesciprt" style={vs2015}>
+                        {file === 'types' && serviceTypesFile}
                     </SyntaxHighlighter>
                 )}
                 {file === 'index' && (

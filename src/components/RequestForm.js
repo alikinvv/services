@@ -67,8 +67,8 @@ const RequestForm = (props) => {
                             <option value="put">put</option>
                         </select>
                     </div>
-                    <button className="btn red request__remove" onClick={() => setRequests(requests.filter((_, i) => i !== index))}>
-                        -
+                    <button className="btn request__remove" onClick={() => setRequests(requests.filter((_, i) => i !== index))}>
+                        Remove
                     </button>
                 </div>
             ))}
