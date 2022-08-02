@@ -17,6 +17,44 @@ export * from './$fileName.types'
     serviceTypes: `
 export interface $type {}
     `,
+    store: `import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import {
+    $responseProps,
+    $serviceName 
+} from 'services'
+
+$fetch
+
+const initialState: $stateProps = {}
+
+const $sliceSlice = createSlice({
+    name: '$slName',
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(
+            fetchOrgUnitsGetList.fulfilled,
+            (state, { payload }) => payload,
+        )
+    },
+})
+
+export default $sliceSlice.reducer`,
+    fetch: `
+export const fetchUnitsList = createAsyncThunk<
+    CivDefUnitsGetListByParamProps,
+    CivDefUnitsGetListByParamParamsProps
+>('civilDefenceUnits/$requestName', async (params, { rejectWithValue }) => {
+    try {
+        const { data } = await $serviceName.$requestName({
+            ...params,
+        })
+        return data
+    } catch (err) {
+        return rejectWithValue(err)
+    }
+})
+`,
     get: `get = () => {
         return api.$method<$responseProps>(
             '$route',

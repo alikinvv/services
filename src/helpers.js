@@ -58,3 +58,10 @@ export const createRouteArr = (route) =>
         .split('/')
         .filter((el) => el !== 'v1' && el)
         .map((el) => camalize(el))
+
+export const originalRouteArr = (route) =>
+    route &&
+    route
+        .split('/')
+        .filter((el) => el !== 'v1' && el)
+        .map((el) => el)
